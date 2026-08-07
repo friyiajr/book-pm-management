@@ -44,7 +44,7 @@ There is currently **no test runner and no linter configured**. Don't claim test
 
 ## Deployment
 
-`pulse/` is built and deployed to GitHub Pages automatically by `.github/workflows/deploy.yml` on every push to `main`. The workflow runs `npm ci` + `npm run build` inside `pulse/` and publishes `pulse/dist`.
+`pulse/` is built and deployed to GitHub Pages automatically by `.github/workflows/deploy.yml` on every push to `main`. The workflow runs `npm ci` + `npm run build` inside `pulse/` and publishes `pulse/dist`. It then also runs `npm run build:yorku`, which (via the mode-aware `vite.config.js`) outputs the York U Fitness class variant into `dist/pulse/yorku`, so it deploys alongside Pulse. Result: Pulse serves at `…/pulse/` and York U Fitness at `…/pulse/yorku/`. Build order matters — Pulse first, then York, since the York output nests inside the Pulse `outDir`.
 
 Because the app is served from a subpath, `vite.config.js` sets `base: '/pulse/'`. Keep this in mind for any asset paths or links — the dev server and the deployed site both live under `/pulse/`.
 
