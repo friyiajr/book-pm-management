@@ -20,6 +20,7 @@ import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import TrendChart from './TrendChart';
+import { tokens } from '../theme';
 
 const TYPE_ICONS = {
   food: RestaurantIcon,
@@ -126,8 +127,8 @@ export default function History({ entries, onEdit, onDelete }) {
                     fontFamily: '"Space Grotesk", sans-serif',
                     px: 1.5,
                     '&.Mui-selected': {
-                      backgroundColor: 'rgba(139,92,246,0.15)',
-                      color: '#A855F7',
+                      backgroundColor: tokens.accentDim15,
+                      color: tokens.violetBright,
                     },
                   }}
                 >
@@ -155,11 +156,11 @@ export default function History({ entries, onEdit, onDelete }) {
           size="small"
           aria-label="Filter entries by type"
         >
-          <ToggleButton value="all" id="filter-all" sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', fontFamily: '"Space Grotesk", sans-serif', px: 1.5, '&.Mui-selected': { backgroundColor: 'rgba(139,92,246,0.15)', color: '#A855F7' } }}>
+          <ToggleButton value="all" id="filter-all" sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', fontFamily: '"Space Grotesk", sans-serif', px: 1.5, '&.Mui-selected': { backgroundColor: tokens.accentDim15, color: tokens.violetBright } }}>
             All
           </ToggleButton>
           {Object.entries(TYPE_LABELS).map(([key, label]) => (
-            <ToggleButton key={key} value={key} id={`filter-${key}`} sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', fontFamily: '"Space Grotesk", sans-serif', px: 1.5, '&.Mui-selected': { backgroundColor: 'rgba(139,92,246,0.15)', color: '#A855F7' } }}>
+            <ToggleButton key={key} value={key} id={`filter-${key}`} sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', fontFamily: '"Space Grotesk", sans-serif', px: 1.5, '&.Mui-selected': { backgroundColor: tokens.accentDim15, color: tokens.violetBright } }}>
               {label}
             </ToggleButton>
           ))}
@@ -173,7 +174,7 @@ export default function History({ entries, onEdit, onDelete }) {
             const Icon = TYPE_ICONS[entry.type];
             return (
               <React.Fragment key={entry.id}>
-                {idx > 0 && <Divider sx={{ borderColor: 'rgba(139,92,246,0.12)' }} />}
+                {idx > 0 && <Divider sx={{ borderColor: tokens.accentDim12 }} />}
                 <ListItem
                   id={`entry-${entry.id}`}
                   secondaryAction={
@@ -217,7 +218,7 @@ export default function History({ entries, onEdit, onDelete }) {
                             sx={{
                               fontSize: '0.7rem',
                               height: 22,
-                              borderColor: 'rgba(139,92,246,0.22)',
+                              borderColor: tokens.borderViolet,
                               color: 'text.secondary',
                             }}
                           />

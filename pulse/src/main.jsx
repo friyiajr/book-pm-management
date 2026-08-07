@@ -10,7 +10,11 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
 import theme from './theme';
+import brand from './brand';
 import App from './App';
+
+// Tab title follows the active brand (Pulse by default).
+document.title = `${brand.name} — Health Tracker`;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

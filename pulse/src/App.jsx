@@ -17,6 +17,7 @@ import LogForm from './components/LogForm';
 import History from './components/History';
 import WeeklySummary from './components/WeeklySummary';
 import useEntries from './hooks/useEntries';
+import brand from './brand';
 
 /**
  * Root application component.
@@ -124,7 +125,7 @@ export default function App() {
       </Box>
 
       <Box component="footer" sx={{ py: 2, px: 3, textAlign: 'center', color: 'text.secondary', borderTop: 1, borderColor: 'divider', fontSize: '0.85rem' }}>
-        Pulse example app for the book Practical Product Management by Guinevere Orvis.{' '}
+        {brand.name} example app for the book Practical Product Management by Guinevere Orvis.{' '}
         <Box component="a" href="https://github.com/gorvis/book-pm-management/blob/main/LICENSE" target="_blank" rel="noreferrer" sx={{ color: 'inherit', textDecoration: 'underline' }}>
           Read license.
         </Box>
@@ -143,7 +144,7 @@ export default function App() {
         </DialogTitle>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 2 }}>
           <Typography variant="body2" color="text.secondary">
-            Pulse stores all data in your browser. Nothing is sent to a server.
+            {brand.name} stores all data in your browser. Nothing is sent to a server.
           </Typography>
 
           {/* Reload sample data */}

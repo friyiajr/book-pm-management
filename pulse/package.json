@@ -7,7 +7,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:yorku": "vite --mode yorku",
+    "build:yorku": "vite build --mode yorku",
+    "preview:yorku": "vite preview --mode yorku"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

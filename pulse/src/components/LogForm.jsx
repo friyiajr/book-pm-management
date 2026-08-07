@@ -14,6 +14,7 @@ import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import CheckIcon from '@mui/icons-material/Check';
+import { tokens } from '../theme';
 
 const TYPES = [
   { value: 'food', label: 'Food', icon: <RestaurantIcon />, unit: 'kcal', placeholder: 'e.g. 450' },
@@ -139,9 +140,9 @@ export default function LogForm({ onSubmit, editEntry = null, onCancel }) {
                     letterSpacing: '0.08em',
                     fontFamily: '"Space Grotesk", sans-serif',
                     '&.Mui-selected': {
-                      backgroundColor: 'rgba(139,92,246,0.15)',
-                      color: '#A855F7',
-                      borderColor: 'rgba(139,92,246,0.40)',
+                      backgroundColor: tokens.accentDim15,
+                      color: tokens.violetBright,
+                      borderColor: tokens.accentBorder40,
                     },
                   }}
                 >

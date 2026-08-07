@@ -33,7 +33,12 @@ npm install        # install dependencies
 npm run dev        # Vite dev server — http://localhost:5173/pulse/
 npm run build      # production build to pulse/dist/
 npm run preview    # serve the production build locally
+
+npm run dev:yorku    # dev server, York U Fitness class branding (red)
+npm run build:yorku  # production build, York U Fitness branding
 ```
+
+The plain `dev`/`build` scripts render **Pulse** (the default, standard look for the book). The `:yorku` scripts render the **York U Fitness** class variant. See the Branding section below.
 
 There is currently **no test runner and no linter configured**. Don't claim tests pass — there are none to run.
 
@@ -52,6 +57,11 @@ The app is a small client-only SPA. There is **no backend, no database, and no a
 - **`src/hooks/useEntries.js`** is the single source of truth for data. It exposes `{ entries, add, update, remove, clearAll, loadSampleData }`, backed by `localStorage` under the key `pulse.entries`. On first run (or corrupted storage) it auto-loads generated sample data. **Route all entry mutations through this hook** — don't touch `localStorage` directly elsewhere.
 - **`src/data/seed.js`** generates ~14 days of realistic sample entries with timestamps relative to today, so charts always look populated.
 - **`src/components/`** — presentational/feature components: `Nav` (responsive Tabs on desktop, `BottomNavigation` on mobile via `useMediaQuery('(max-width:600px)')`), `Dashboard`, `LogForm`, `History`, `MetricCard`, `TrendChart`, `PulseLine`.
+- **`src/brand.js`** — brand configuration (product name + accent colors). Exports the active `brand`, chosen by `import.meta.env.VITE_BRAND`, defaulting to `pulse`. `theme.js` derives its accent/palette tokens from it, so all UI color flows from the selected brand.
+
+### Branding (Pulse vs York U Fitness)
+
+One codebase serves two brands. **Pulse is the default and must stay so** — it's the standard look for the book and the deployed GitHub Pages site. **York U Fitness** is an opt-in red-branded variant for the York University course, selected with Vite mode `yorku` (`npm run dev:yorku` / `build:yorku`; `.env.yorku` sets `VITE_BRAND=yorku`). Only branding differs — colors and the product name — there are no feature or data differences, and the `localStorage` key (`pulse.entries`) is intentionally shared. When adding UI color, pull from the theme tokens / `brand.js` rather than hardcoding hex values, so both variants stay consistent. Never change the default (unset `VITE_BRAND`) away from Pulse.
 
 ### Entry data model
 

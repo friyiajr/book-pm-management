@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .env*
+!pulse/.env.yorku
 .DS_Store
 .vscode/
 artifacts/data/fct_user_activity.csv

@@ -1,14 +1,16 @@
 import { createTheme } from '@mui/material/styles';
+import { brand } from './brand';
 
 /**
- * Pulse design tokens — dark, mono-violet theme inspired by the book cover.
- * "A quiet control panel at night."
+ * Design tokens — a dark, single-accent theme inspired by the book cover.
+ * "A quiet control panel at night." The accent color comes from the active
+ * brand (Pulse violet by default; see brand.js).
  */
 
-const VIOLET = '#8B5CF6';
-const VIOLET_BRIGHT = '#A855F7';
-const BORDER_VIOLET = 'rgba(139,92,246,0.22)';
-const GLOW_VIOLET = 'rgba(168,85,247,0.30)';
+const VIOLET = brand.accent;
+const VIOLET_BRIGHT = brand.accentBright;
+const BORDER_VIOLET = `rgba(${brand.accentRGB},0.22)`;
+const GLOW_VIOLET = `rgba(${brand.accentBrightRGB},0.30)`;
 
 const theme = createTheme({
   palette: {
@@ -102,11 +104,11 @@ const theme = createTheme({
           backgroundColor: '#14141C',
           border: `1px solid ${BORDER_VIOLET}`,
           borderRadius: 12,
-          boxShadow: '0 0 24px rgba(168,85,247,0.12)',
+          boxShadow: `0 0 24px rgba(${brand.accentBrightRGB},0.12)`,
           transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
           '&:hover': {
-            boxShadow: '0 0 32px rgba(168,85,247,0.20)',
-            borderColor: 'rgba(139,92,246,0.40)',
+            boxShadow: `0 0 32px rgba(${brand.accentBrightRGB},0.20)`,
+            borderColor: `rgba(${brand.accentRGB},0.40)`,
           },
         },
       },
@@ -126,16 +128,16 @@ const theme = createTheme({
           letterSpacing: '0.08em',
         },
         contained: {
-          boxShadow: '0 0 16px rgba(168,85,247,0.20)',
+          boxShadow: `0 0 16px rgba(${brand.accentBrightRGB},0.20)`,
           '&:hover': {
-            boxShadow: '0 0 24px rgba(168,85,247,0.35)',
+            boxShadow: `0 0 24px rgba(${brand.accentBrightRGB},0.35)`,
           },
         },
         outlined: {
           borderColor: BORDER_VIOLET,
           '&:hover': {
             borderColor: VIOLET,
-            backgroundColor: 'rgba(139,92,246,0.08)',
+            backgroundColor: `rgba(${brand.accentRGB},0.08)`,
           },
         },
       },
@@ -221,10 +223,16 @@ export const tokens = {
   violetBright: VIOLET_BRIGHT,
   borderViolet: BORDER_VIOLET,
   glowViolet: GLOW_VIOLET,
-  surfaceRaised: '#1C1B27',
+  accentRGB: brand.accentRGB,
+  accentBrightRGB: brand.accentBrightRGB,
+  accentDim08: `rgba(${brand.accentRGB},0.08)`,
+  accentDim12: `rgba(${brand.accentRGB},0.12)`,
+  accentDim15: `rgba(${brand.accentRGB},0.15)`,
+  accentBorder40: `rgba(${brand.accentRGB},0.40)`,
+  surfaceRaised: brand.surfaceRaised,
   chartGrid: 'rgba(255,255,255,0.05)',
-  chartGradientStart: 'rgba(168,85,247,0.35)',
-  chartGradientEnd: 'rgba(168,85,247,0)',
+  chartGradientStart: `rgba(${brand.accentBrightRGB},0.35)`,
+  chartGradientEnd: `rgba(${brand.accentBrightRGB},0)`,
 };
 
 export default theme;

@@ -11,6 +11,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import HistoryIcon from '@mui/icons-material/History';
 import InsightsIcon from '@mui/icons-material/Insights';
 import PulseLine from './PulseLine';
+import { tokens } from '../theme';
+import brand from '../brand';
 
 /**
  * App header with PulseLine logo and responsive navigation.
@@ -32,7 +34,7 @@ export default function Nav({ view, onChangeView }) {
           justifyContent: 'space-between',
           px: { xs: 2, sm: 3 },
           py: 1.5,
-          borderBottom: '1px solid rgba(139,92,246,0.22)',
+          borderBottom: `1px solid ${tokens.borderViolet}`,
           backgroundColor: 'rgba(20,20,28,0.85)',
           backdropFilter: 'blur(12px)',
           position: 'sticky',
@@ -48,12 +50,12 @@ export default function Nav({ view, onChangeView }) {
             sx={{
               fontSize: { xs: '1.1rem', sm: '1.3rem' },
               fontWeight: 700,
-              background: 'linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%)',
+              background: `linear-gradient(135deg, ${tokens.violet} 0%, ${tokens.violetBright} 100%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
           >
-            PULSE
+            {brand.name}
           </Typography>
         </Box>
 

@@ -11,6 +11,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import { tokens } from '../theme';
 
 /**
  * WeeklySummary — a single read-only screen that shows a lapsing user their
@@ -177,7 +178,7 @@ function cap(s) {
 const TREND_DISPLAY = {
   up: { label: 'Up from last week', icon: TrendingUpIcon, color: '#4ADE80' },
   down: { label: 'Down from last week', icon: TrendingDownIcon, color: '#FBBF24' },
-  steady: { label: 'Steady with last week', icon: TrendingFlatIcon, color: '#A855F7' },
+  steady: { label: 'Steady with last week', icon: TrendingFlatIcon, color: tokens.violetBright },
 };
 
 export default function WeeklySummary() {
@@ -274,7 +275,7 @@ export default function WeeklySummary() {
                 color: trendMeta.color,
                 borderColor: 'divider',
                 border: '1px solid',
-                backgroundColor: 'rgba(139,92,246,0.08)',
+                backgroundColor: tokens.accentDim08,
                 '& .MuiChip-icon': { color: trendMeta.color },
               }}
               variant="outlined"

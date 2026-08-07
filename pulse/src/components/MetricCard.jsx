@@ -10,12 +10,13 @@ import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import TrendChart from './TrendChart';
+import { tokens } from '../theme';
 
 const METRIC_CONFIG = {
-  food: { icon: RestaurantIcon, label: 'Food', unit: 'kcal', color: '#8B5CF6' },
-  steps: { icon: DirectionsWalkIcon, label: 'Steps', unit: 'steps', color: '#8B5CF6' },
-  water: { icon: WaterDropIcon, label: 'Water', unit: 'ml', color: '#8B5CF6' },
-  sleep: { icon: BedtimeIcon, label: 'Sleep', unit: 'hours', color: '#8B5CF6' },
+  food: { icon: RestaurantIcon, label: 'Food', unit: 'kcal', color: tokens.violet },
+  steps: { icon: DirectionsWalkIcon, label: 'Steps', unit: 'steps', color: tokens.violet },
+  water: { icon: WaterDropIcon, label: 'Water', unit: 'ml', color: tokens.violet },
+  sleep: { icon: BedtimeIcon, label: 'Sleep', unit: 'hours', color: tokens.violet },
 };
 
 /**
@@ -42,11 +43,11 @@ export default function MetricCard({ type, todayTotal, trendData, onQuickAdd }) 
             aria-label={`Quick add ${config.label}`}
             sx={{
               color: 'primary.light',
-              border: '1px solid rgba(139,92,246,0.22)',
+              border: `1px solid ${tokens.borderViolet}`,
               width: 30,
               height: 30,
               '&:hover': {
-                backgroundColor: 'rgba(139,92,246,0.12)',
+                backgroundColor: tokens.accentDim12,
                 borderColor: 'primary.main',
               },
             }}
