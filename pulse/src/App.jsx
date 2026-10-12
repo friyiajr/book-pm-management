@@ -18,6 +18,7 @@ import History from './components/History';
 import WeeklySummary from './components/WeeklySummary';
 import useEntries from './hooks/useEntries';
 import brand from './brand';
+import FitnessApp from './fitness/FitnessApp';
 
 /**
  * Root application component.
@@ -25,6 +26,10 @@ import brand from './brand';
  * No router — simple tab switching for GitHub Pages compatibility.
  */
 export default function App() {
+  return import.meta.env.VITE_BRAND === 'yorku' ? <FitnessApp /> : <PulseApp />;
+}
+
+function PulseApp() {
   const { entries, add, update, remove, clearAll, loadSampleData } = useEntries();
   const [view, setView] = useState(0); // 0=Dashboard, 1=Log, 2=History, 3=Summary
   const [editEntry, setEditEntry] = useState(null);
