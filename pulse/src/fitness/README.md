@@ -1,6 +1,6 @@
 # York U Fitness prototype
 
-The York mode uses a dedicated responsive fitness dashboard. Pulse mode keeps the original health tracker. No backend, wearable integration, or network data service is used.
+York mode opens the original health dashboard by default. A new Progress tab in the existing desktop and mobile navigation opens the responsive fitness progress screen; Dashboard, Log, History, and Summary keep their original behavior. The progress screen has a locally scoped light theme, without replacing the app theme or global CSS. Pulse mode keeps its original navigation and health tracker. No backend, wearable integration, or network data service is used.
 
 Demo settings switches between Alex and Sam; both start with zero workouts and no goal. Generated starter workouts from older versions are removed on load while real logged workouts are preserved. A confirmed reset action clears the selected demo profile. Browser storage is scoped by profile; logging always stamps the active profile's ownership and reads filter by that ownership. This simulates profile isolation for demo purposes. It is not authentication or a security boundary: anyone with access to this browser or its developer tools can access its local storage. Use fictional data.
 

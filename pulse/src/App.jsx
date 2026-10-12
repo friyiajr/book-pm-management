@@ -26,12 +26,9 @@ import FitnessApp from './fitness/FitnessApp';
  * No router — simple tab switching for GitHub Pages compatibility.
  */
 export default function App() {
-  return import.meta.env.VITE_BRAND === 'yorku' ? <FitnessApp /> : <PulseApp />;
-}
-
-function PulseApp() {
+  const hasFitnessProgress = import.meta.env.VITE_BRAND === 'yorku';
   const { entries, add, update, remove, clearAll, loadSampleData } = useEntries();
-  const [view, setView] = useState(0); // 0=Dashboard, 1=Log, 2=History, 3=Summary
+  const [view, setView] = useState(0); // 0=Dashboard, 1=Log, 2=History, 3=Summary, 4=Progress
   const [editEntry, setEditEntry] = useState(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [confirmClear, setConfirmClear] = useState(false);
@@ -84,7 +81,7 @@ function PulseApp() {
         flexDirection: 'column',
       }}
     >
-      <Nav view={view} onChangeView={setView} />
+      <Nav view={view} onChangeView={setView} showProgress={hasFitnessProgress} />
 
       {/* Settings button */}
       <IconButton
@@ -127,6 +124,7 @@ function PulseApp() {
           />
         )}
         {view === 3 && <WeeklySummary />}
+        {hasFitnessProgress && view === 4 && <FitnessApp />}
       </Box>
 
       <Box component="footer" sx={{ py: 2, px: 3, textAlign: 'center', color: 'text.secondary', borderTop: 1, borderColor: 'divider', fontSize: '0.85rem' }}>

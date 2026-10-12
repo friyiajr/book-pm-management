@@ -219,6 +219,9 @@ const theme = createTheme({
 
 // Export design tokens for use in components (e.g. Recharts)
 export const tokens = {
+  newFeature: '#FFD166',
+  newFeatureBackground: 'rgba(255,209,102,0.16)',
+  newFeatureGlow: 'rgba(255,209,102,0.55)',
   violet: VIOLET,
   violetBright: VIOLET_BRIGHT,
   borderViolet: BORDER_VIOLET,

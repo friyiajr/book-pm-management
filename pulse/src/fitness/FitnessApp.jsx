@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { Alert, Avatar, BottomNavigation, BottomNavigationAction, Box, Button, Chip, CssBaseline, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, MenuItem, Paper, Snackbar, Stack, TextField, Typography } from '@mui/material';
+import { Alert, Avatar, Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, MenuItem, Paper, Snackbar, Stack, TextField, Typography } from '@mui/material';
 import { AddRounded, ArrowForwardRounded, CheckRounded, DirectionsRunRounded, EmojiEventsOutlined, FitnessCenterRounded, FlagOutlined, GridViewRounded, GroupsOutlined, LocalFireDepartmentOutlined, LockOutlined, SettingsOutlined, TrendingUpRounded } from '@mui/icons-material';
 import theme from './theme';
 import useFitness from './useFitness';
@@ -68,7 +68,7 @@ function Workout({
 }
 export default function FitnessApp() {
   const [user, setUser] = useState('alex');
-  return <ThemeProvider theme={theme}><CssBaseline /><Dashboard key={user} user={user} onUserChange={setUser} /></ThemeProvider>;
+  return <ThemeProvider theme={theme}><Dashboard key={user} user={user} onUserChange={setUser} /></ThemeProvider>;
 }
 function Dashboard({
   user,
@@ -117,72 +117,16 @@ function Dashboard({
       mt: 1,
       mb: 2
     }}>Log any movement you enjoy. Your progress will appear here.</Typography><Button variant="outlined" onClick={openLog} startIcon={<AddRounded />}>Log your first workout</Button></Box>;
-  return <Box sx={{
-    minHeight: '100vh',
-    pb: {
-      xs: 10,
-      md: 0
-    }
-  }}>
- <Box component="header" sx={{
-      height: 82,
-      bgcolor: 'background.paper',
-      borderBottom: '1px solid',
-      borderColor: 'divider',
-      px: {
-        xs: 2.5,
-        md: 5
-      },
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: 2
-    }}><Stack direction="row" spacing={1.5} alignItems="center"><Box sx={{
-          bgcolor: 'primary.main',
-          color: 'white',
-          width: 43,
-          height: 43,
-          borderRadius: '11px 11px 11px 2px',
-          display: 'grid',
-          placeItems: 'center',
-          fontFamily: 'Space Grotesk',
-          fontWeight: 700,
-          fontSize: 31
-        }}>Y</Box><Box><Typography sx={{
-            fontWeight: 700,
-            fontSize: '1.05rem',
-            letterSpacing: '-.035em'
-          }}>York U <Box component="span" sx={{
-              fontWeight: 400
-            }}>Fitness</Box></Typography><Typography sx={{
-            fontSize: '.58rem',
-            letterSpacing: '.16em',
-            color: 'text.secondary'
-          }}>YOUR CAMPUS. YOUR PACE.</Typography></Box></Stack><Stack component="nav" aria-label="Main navigation" direction="row" spacing={1} sx={{
-        display: {
-          xs: 'none',
-          md: 'flex'
-        }
-      }}>{nav.map(([id, label, icon]) => <Button key={id} startIcon={icon} onClick={() => navigate(id)} sx={{
-          color: view === id ? 'primary.main' : 'text.secondary',
-          bgcolor: view === id ? '#FFF0F2' : 'transparent'
-        }}>{label}</Button>)}</Stack><Stack direction="row" spacing={1} alignItems="center"><Chip label="DEMO" size="small" sx={{
-          display: {
-            xs: 'none',
-            sm: 'flex'
-          },
-          fontSize: '.6rem',
-          bgcolor: '#F4F5F7'
-        }} /><IconButton aria-label="Demo settings" onClick={() => setDialog('settings')}><SettingsOutlined sx={{
-            fontSize: 21
-          }} /></IconButton><Avatar sx={{
-          width: 36,
-          height: 36,
-          bgcolor: '#F6E8DC',
-          color: '#775A42',
-          fontSize: '.78rem'
-        }} aria-label={`${name} demo profile`}>{name[0]}S</Avatar></Stack></Box>
- <Box component="main" sx={{
+  return <Box sx={{ minHeight: '75vh', bgcolor: 'background.default', color: 'text.primary' }}>
+    <Box sx={{ maxWidth: 1160, mx: 'auto', px: { xs: 2.5, md: 5 }, pt: 2.5 }}>
+      <Stack direction="row" justifyContent="space-between" alignItems="center" gap={1}>
+        <Stack component="nav" aria-label="Fitness progress navigation" direction="row" spacing={0.5} sx={{ flexWrap: 'wrap' }}>
+          {nav.map(([id, label, icon]) => <Button key={id} size="small" startIcon={icon} onClick={() => navigate(id)} aria-pressed={view === id} sx={{ px: { xs: 1, sm: 2 }, color: view === id ? 'primary.main' : 'text.secondary', bgcolor: view === id ? '#FFF0F2' : 'transparent', fontSize: { xs: '.7rem', sm: '.8rem' } }}>{label}</Button>)}
+        </Stack>
+        <IconButton aria-label="Demo settings" onClick={() => setDialog('settings')}><SettingsOutlined sx={{ fontSize: 21 }} /></IconButton>
+      </Stack>
+    </Box>
+ <Box component="section" aria-label="Fitness progress" sx={{
       maxWidth: 1160,
       mx: 'auto',
       px: {
@@ -395,25 +339,6 @@ function Dashboard({
           }} />Frontend demo · Saved in this browser only</Typography><Typography sx={{
           fontSize: '.65rem'
         }}>York U Fitness · Move at your own pace.</Typography></Stack></Box>
- <BottomNavigation showLabels value={view} onChange={(_, v) => navigate(v)} sx={{
-      display: {
-        xs: 'flex',
-        md: 'none'
-      },
-      position: 'fixed',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      height: 'calc(66px + env(safe-area-inset-bottom))',
-      pb: 'env(safe-area-inset-bottom)',
-      borderTop: '1px solid',
-      borderColor: 'divider',
-      zIndex: 10,
-      '& .MuiBottomNavigationAction-label': {
-        fontSize: '.65rem !important',
-        mt: .5
-      }
-    }}>{nav.map(([id, label, icon]) => <BottomNavigationAction key={id} value={id} label={label} icon={icon} />)}</BottomNavigation>
  <Dialog open={dialog === 'workout'} onClose={() => setDialog(null)} fullWidth maxWidth="xs"><Box component="form" onSubmit={e => {
         e.preventDefault();
         if (!form.title.trim() || !form.date || form.date > today || !Number.isInteger(Number(form.duration)) || Number(form.duration) < 1 || Number(form.duration) > 600) return;
